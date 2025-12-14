@@ -56,15 +56,7 @@ export default function App() {
 
       <main>
         <div className="shows-grid">
-        {shows.map((show)=> { 
-          return <ShowCard key={show.id} 
-                           artist={show.artist} 
-                           stage={show.stage}
-                           day={show.day}
-                           hour={show.hour}
-                           ticketsLeft={show.ticketsLeft}
-                           image={show.image}
-                  />})}
+        {shows.map((show)=>{ return <ShowCard key={show.id} {...show}/> })}
         </div>
       </main>
     </div>

@@ -19,11 +19,15 @@ export default function ShowCard(
     setIsInterested(!isInterested)
   }
 
+  const lastTicketsAmount = 30
+  const ticketsSoldOut = 0;
   function ticketsStatusText(): string {
-     return ticketsLeft === 0? "SOLD OUT": ticketsLeft > 30? "Tickets available": "Last tickets – hurry up!"
+     return ticketsLeft === ticketsSoldOut? "SOLD OUT": ticketsLeft > lastTicketsAmount? "Tickets available": "Last tickets – hurry up!"
   }
 
-  let interestedStatusText = isInterested? "This show is in your interested list 🎟️": "You haven't added this show yet"
+  const ticketsStatus = ticketsStatusText()
+
+  const interestedStatusText = isInterested? "This show is in your interested list 🎟️": "You haven't added this show yet"
 
   return (
     <article className="show-card">
@@ -34,8 +38,7 @@ export default function ShowCard(
 
       <header className="show-header">
         <h2 className="show-artist">
-          {isInterested? "⭐": ""}
-          {artist}
+          {isInterested && "⭐"} {artist} 
         </h2>
         <p className="show-meta">
           {`${stage} ${day} ${hour}`}
@@ -44,7 +47,7 @@ export default function ShowCard(
 
       <section className="show-info">
         <p className="tickets-status">
-          {ticketsStatusText()}
+          {ticketsStatus}
         </p>
 
         <p className="interested-status">
